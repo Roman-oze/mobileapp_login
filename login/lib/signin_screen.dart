@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:login/home_screen.dart';
 import 'package:login/reusable_widget/reusable_widget.dart';
@@ -9,58 +10,102 @@ class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
+
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _passwordTextController = TextEditingController();
 
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  late CollectionReference users;
+
+  @override
+  void initState() {
+    users = firestore.collection('users');
+    super.initState();
+  }
+
+  void login() {
+    users
+        .where(
+          'email',
+          isEqualTo: _emailTextController.text,
+        )
+        .where(
+          'password',
+          isEqualTo: _passwordTextController.text,
+        )
+        .get()
+        .then((value) {
+      final data = value.docs;
+      print(data.length);
+      print('User found');
+      if (data.isNotEmpty) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
+    }).catchError((error) => print("Failed to found user: $error"));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.teal,
+      backgroundColor: Colors.teal,
       body: Container(
-        
         color: Colors.teal,
-        child:SingleChildScrollView(
-          child:Padding(
-            padding: EdgeInsets.fromLTRB(40,30,40,30),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(40, 30, 40, 30),
             child: Column(
               children: <Widget>[
-                    logoWidget("thanks.png"),
-                SizedBox(height: 30,),
-                reusableTextField("Enter username", Icons.person_outline, false,_emailTextController),
-                 SizedBox(height: 30,),
-                 reusableTextField("Enter Passworrd", Icons.lock_outline, true,_emailTextController),
-                            SizedBox(height:10,),
-                signInSignUpButton(context, true, (){
-                  Navigator.push(context,MaterialPageRoute(builder: (context) =>HomeScreen()));
+                logoWidget("thanks.png"),
+                SizedBox(
+                  height: 30,
+                ),
+                reusableTextField("Enter username", Icons.person_outline, false,
+                    _emailTextController),
+                SizedBox(
+                  height: 30,
+                ),
+                reusableTextField("Enter Passworrd", Icons.lock_outline, true,
+                    _passwordTextController),
+                SizedBox(
+                  height: 10,
+                ),
+                signInSignUpButton(context, true, () {
+                  login();
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => HomeScreen()));
                 }),
                 signUpOption()
               ],
             ),
           ),
-        ) ,
-      ) , // decoration:BoxDecoration(gradient: LinearGradien(Colors,),
+        ),
+      ), // decoration:BoxDecoration(gradient: LinearGradien(Colors,),
     );
   }
-  Row signUpOption(){
+
+  Row signUpOption() {
     return Row(
-          mainAxisAlignment:MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('Dont have an account ?'
-        ,
-        style: TextStyle(
-          color: Colors.white70,
-        ),) ,
+        const Text(
+          'Dont have an account ?',
+          style: TextStyle(
+            color: Colors.white70,
+          ),
+        ),
         GestureDetector(
-          onTap: (){
-            Navigator.push(context,MaterialPageRoute(builder: (context)=>SignUpScreen()));
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SignUpScreen()));
           },
-          child: const Text(' Sign UP',style: TextStyle(color: Colors.white,fontWeight:FontWeight.bold),
+          child: const Text(
+            ' Sign UP',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
         )
       ],
     );
   }
 }
-
