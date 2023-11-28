@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:login/home_screen.dart';
-// import 'package:firebase_signin/screens/reset_password.dart';
 import 'package:login/reusable_widget/reusable_widget.dart';
 import 'package:login/signup_screen.dart';
+
+import 'forgot_pw_page.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -55,7 +56,8 @@ class _SignInScreenState extends State<SignInScreen> {
         color: Colors.teal,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(40, 30, 40, 30),
+            padding: EdgeInsets.fromLTRB(
+                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
                 logoWidget("thanks.png"),
@@ -72,6 +74,29 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   height: 10,
                 ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap:(){
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return ForgotPasswordPage();
+                              },
+                              ),
+                              );
+                            },
+                            child: Text('Forgot Password',style: TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 16,
+                              fontWeight:FontWeight.bold
+                            ),),
+                          ),
+                        ],
+                      ),
+                    ),
+
                 signInSignUpButton(context, true, () {
                   login();
                   // Navigator.push(context,
@@ -81,7 +106,9 @@ class _SignInScreenState extends State<SignInScreen> {
               ],
             ),
           ),
+
         ),
+
       ), // decoration:BoxDecoration(gradient: LinearGradien(Colors,),
     );
   }
