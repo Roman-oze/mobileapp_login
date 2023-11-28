@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:login/home_screen.dart';
 import 'package:login/signin_screen.dart';
-
 import 'reusable_widget/reusable_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -61,23 +60,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter UserName", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _nameTextController),
                 SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Email", Icons.person_outline, true,
+                reusableTextField("Enter username", Icons.person_outline, true,
                     _emailTextController),
                 SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Passworrd", Icons.lock_outline, true,
+                reusableTextField("Enter Password", Icons.lock_outline, true,
                     _passwordTextController),
                 SizedBox(
                   height: 20,
                 ),
                 signInSignUpButton(context, false, () {
-                  print('click');
+                  print("Sign Up");
                   addUser();
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => HomeScreen()));

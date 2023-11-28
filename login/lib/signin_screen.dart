@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:login/home_screen.dart';
+// import 'package:firebase_signin/screens/reset_password.dart';
 import 'package:login/reusable_widget/reusable_widget.dart';
 import 'package:login/signup_screen.dart';
 
@@ -108,4 +109,20 @@ class _SignInScreenState extends State<SignInScreen> {
       ],
     );
   }
+  // Widget forgetPassword(BuildContext context) {
+  //   return Container(
+  //     width: MediaQuery.of(context).size.width,
+  //     height: 35,
+  //     alignment: Alignment.bottomRight,
+  //     child: TextButton(
+  //       child: const Text(
+  //         "Forgot Password?",
+  //         style: TextStyle(color: Colors.white70),
+  //         textAlign: TextAlign.right,
+  //       ),
+  //       onPressed: () => Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => ResetPassword())),
+  //     ),
+  //   );
+  // }
 }
