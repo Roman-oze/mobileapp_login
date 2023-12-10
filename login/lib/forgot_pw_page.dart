@@ -47,33 +47,34 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           SizedBox(height: 20,),
           Text(
             'Enter your Email you will get reset password',style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: Colors.redAccent
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.redAccent
           ),),
-           SizedBox(height: 10,),
-           Padding(
-               padding: EdgeInsets.symmetric(horizontal: 25.0),
-               child: TextField(
-                  controller: _emailTextController ,
-                 decoration: InputDecoration(
-                   enabledBorder: OutlineInputBorder(
-                     borderSide:BorderSide(color: Colors.black),
-                     borderRadius: BorderRadius.circular(12),
-                   ),
-                   focusedBorder: OutlineInputBorder(
-                     borderSide: BorderSide(
-                       color: Colors.purpleAccent),
-                       borderRadius: BorderRadius.circular(12),
-                     ),
-                    fillColor: Colors.white70,
-                   filled: true,
-                   hintText: 'Email',
-                   ),
-
-                 ),
+          SizedBox(height: 10,),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.0),
+            child: TextField(
+              controller: _emailTextController ,
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide:BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.purpleAccent),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                fillColor: Colors.white70,
+                filled: true,
+                hintText: 'Email',
               ),
-     SizedBox(height: 20,),
+
+            ),
+          ),
+          SizedBox(height: 20,),
+
           // MaterialButton(onPressed: passwordReset,
           //   child: Text('Reset Password'),
           //   color: Colors.blueAccent,

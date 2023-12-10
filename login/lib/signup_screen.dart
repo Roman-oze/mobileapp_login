@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter username", Icons.person_outline, true,
+                reusableTextField("Enter username", Icons.person_outline, false,
                     _emailTextController),
                 SizedBox(
                   height: 30,
@@ -78,8 +78,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 signInSignUpButton(context, false, () {
                   print("Sign Up");
                   addUser();
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 })
               ],
             ),
